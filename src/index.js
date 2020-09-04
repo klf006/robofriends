@@ -1,19 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { createLogger } from 'redux-logger';
+import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
-import './index.css';
+import { createLogger } from 'redux-logger';
+import 'tachyons';
+
 import App from './Containers/App';
 import * as serviceWorker from './serviceWorker';
-import 'tachyons';
 import { searchRobots, requestRobots } from './reducers';
+
+import './index.css';
 
 const logger = createLogger();
 
 const rootReducer = combineReducers({ searchRobots, requestRobots});
-const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
+
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger))
+
+// window.store = store; used to debug when data was not creating cards
+
 
 
 ReactDOM.render(
